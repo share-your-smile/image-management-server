@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>teacher</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <h3><span id="logs"></span>
+    <script>
+      console.log('why?');
+      fetch('http://localhost:3003/api/image/github-logo.png')
+        .then(response => response.blob())
+        .then(data => {
+          console.log(data);
+          // let blob = new Blob([data], { type: "image/png" });
+          let blob = new Blob([data]);
+          let urlCreator = window.URL || window.webkitURL;
+          let src = urlCreator.createObjectURL(blob);
+          $("#logs").append("<img src="+src+">");
+        });
+      // let socket = io.connect();
+      // socket.emit("t","connect");
+      // socket.on("image", function(data) {
+      //   let blob = new Blob([data], { type: "image/png" });
+      //   let urlCreator = window.URL || window.webkitURL;
+      //   let src = urlCreator.createObjectURL(blob);
+      //   $("#logs").append("<img src="+src+">") ;
+      // });
+    </script>
+  </body>
+</html>
