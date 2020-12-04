@@ -62,6 +62,8 @@ const getDate = () => {
 
 console.log(getDate());
 
+getlist();
+
 // app.use(express.json());
 // app.get('/api/image/:fileName', async function(req, res) {
 

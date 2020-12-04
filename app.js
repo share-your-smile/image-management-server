@@ -8,12 +8,14 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use('/admin', express.static('test-front'));
+
 app.get('/', function(req, res) {
   res.send('Hello World!');
 });
 
 app.use('/api/:userId', apiRouter);
 
-app.listen(3010, function() {
-  console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT || 3030, function() {
+  console.log('Example app listening on port 3030!');
 });
