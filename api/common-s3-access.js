@@ -14,7 +14,7 @@ module.exports = class CommonS3Access {
     const params = {
       Body: decodedFile,
       Bucket: this.S3_BUCKET,
-      Key: `/${userId}/${fileName}`,
+      Key: `${userId}/${fileName}`,
       ContentType: contentType
     }
     const s3 = new aws.S3();
@@ -48,12 +48,10 @@ module.exports = class CommonS3Access {
   // 画像データを取得する
   async getImage(userId, fileName) {
     const params = {
-      Bucket: process.env.S3_BUCKET,
+      Bucket: this.S3_BUCKET,
       Key:`${userId}/${fileName}`
     }
-
     const s3 = new aws.S3();
-    const res = await s3.getObject(params).promise();
-    return res.Body;
+    return await s3.getObject(params).promise();
   }
 }

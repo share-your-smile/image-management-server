@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
   res.send('Hello World!');
 });
 
-app.use('/api/:userId', apiRouter);
+app.use('/api', apiRouter);
 
 app.listen(process.env.PORT || 3030, function() {
   console.log('Example app listening on port 3030!');
