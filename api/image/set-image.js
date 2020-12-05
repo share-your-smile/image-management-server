@@ -9,7 +9,13 @@ const setNum = (numString) => {
 }
 
 const getDate = () => {
-  const date = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' });
+  console.log('get date');
+  const jstOffset = 9 * 60;
+  const date = new Date();
+  date.setTime(date.getTime() + jstOffset * 60 * 1000);
+
+  // const date = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' });
+  
   const tmp1 = date.split('-');
   const tmp2 = tmp1[2].split(' ');
   const tmp3 = tmp2[1].split(':');
