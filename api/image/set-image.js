@@ -17,7 +17,7 @@ const getDate = () => {
   // date.setTime(date.getTime() + jstOffset * 60 * 1000);
   console.log('get date 3');
 
-  const jstDate = date.toLocaleString();
+  const jstDate = date.toLocaleString('ja-jp');
 
   console.log(jstDate);
 
