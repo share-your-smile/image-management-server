@@ -6,7 +6,9 @@ let apiRouter = require('./router/api');
 
 app.use(cors());
 
-app.use(express.json());
+app.use(express.json({ extended: true, limit: '20mb'}));
+
+app.use(express.urlencoded({ extended: true, limit: '20mb'}));
 
 app.use('/admin', express.static('test-front'));
 
