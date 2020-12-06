@@ -9,13 +9,9 @@ const setNum = (numString) => {
 }
 
 const getDate = () => {
-  console.log('get date');
   const jstOffset = 9 * 60;
-  console.log('get date 1');
   const date = new Date();
-  console.log('get date 2');
   // date.setTime(date.getTime() + jstOffset * 60 * 1000);
-  console.log('get date 3');
 
   const jstDate = date.toLocaleString('ja-jp');
 
@@ -72,8 +68,6 @@ const setImage = async (req, res) => {
     const userId = req.params.userId;
     const timeStamp = getDate();
 
-    console.log(`time stamp ${timeStamp}`);
-
     const encodedData = req.body.image;
     const posterName = req.body.poster;
 
@@ -84,8 +78,6 @@ const setImage = async (req, res) => {
     // // ContentType(image/png)
     const contentType = encodedData.toString().slice(encodedData.indexOf(':') + 1, encodedData.indexOf(';'));
     const fileName = `${timeStamp}_${posterName}.${fileExtension}`;
-
-    console.log(`file name ${fileName}`);
 
     await s3.uploadImage(userId, decodedFile, contentType, fileName);
 
