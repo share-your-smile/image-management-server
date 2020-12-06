@@ -41,7 +41,7 @@ const getDate = () => {
     second = setNum(tmp3[2]);
   } else {
     // MM/DD/YYYY, HH:MM:SS AMorPM
-    tmp1 = date.split('/');
+    tmp1 = jstDate.split('/');
     tmp2 = tmp1[2].split(',');
     tmp3 = tmp2[1].split(' ');
     tmp4 = tmp3[1].split(':');
