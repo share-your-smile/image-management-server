@@ -7,6 +7,7 @@ aws.config.region = 'ap-northeast-1';
 module.exports = class CommonS3Access {
   constructor() {
     this.S3_BUCKET = process.env.S3_BUCKET;
+    this.S3_SLIDE_BUCKET = process.env.S3_SLIDE_BUCKET;
   }
 
   // 画像データを格納する
@@ -25,7 +26,7 @@ module.exports = class CommonS3Access {
   // 画像データの一覧を取得する
   async getImagesList(userId) {
     const params = {
-      Bucket: this.S3_BUCKET,
+      Bucket: this.setBucket(userId),
       Prefix: `${userId}`,
     }
 
@@ -48,10 +49,18 @@ module.exports = class CommonS3Access {
   // 画像データを取得する
   async getImage(userId, fileName) {
     const params = {
-      Bucket: this.S3_BUCKET,
+      Bucket: this.setBucket(userId),
       Key:`${userId}/${fileName}`
     }
     const s3 = new aws.S3();
     return await s3.getObject(params).promise();
+  }
+
+  setBucket(userId) {
+    if (userId.indexOf('resized-') !== -1) {
+      return this.S3_SLIDE_BUCKET;
+    } else {
+      return this.S3_BUCKET;
+    }
   }
 }
