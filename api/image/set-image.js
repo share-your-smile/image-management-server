@@ -14,12 +14,17 @@ const getDate = () => {
   console.log('get date 1');
   const date = new Date();
   console.log('get date 2');
-  date.setTime(date.getTime() + jstOffset * 60 * 1000);
+  // date.setTime(date.getTime() + jstOffset * 60 * 1000);
   console.log('get date 3');
+
+  const jstDate = date.toLocaleString();
+
+  console.log(jstDate);
 
   // const date = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' });
 
-  const tmp1 = date.split('-');
+  const tmp1 = jstDate.split('-');
+  console.log(tmp1);
   const tmp2 = tmp1[2].split(' ');
   const tmp3 = tmp2[1].split(':');
 
