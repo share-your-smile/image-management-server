@@ -83,7 +83,10 @@ const setImage = async (req, res) => {
 
     res.status(200);
     res.send({
-      result: 'OK'
+      result: 'OK',
+      file: {
+        name: fileName
+      }
     });
   } catch (err) {
     res.status(400);
