@@ -11,8 +11,11 @@ const setNum = (numString) => {
 const getDate = () => {
   console.log('get date');
   const jstOffset = 9 * 60;
+  console.log('get date 1');
   const date = new Date();
+  console.log('get date 2');
   date.setTime(date.getTime() + jstOffset * 60 * 1000);
+  console.log('get date 3');
 
   // const date = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' });
 
