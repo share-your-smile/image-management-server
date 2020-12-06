@@ -15,7 +15,7 @@ const getDate = () => {
   date.setTime(date.getTime() + jstOffset * 60 * 1000);
 
   // const date = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' });
-  
+
   const tmp1 = date.split('-');
   const tmp2 = tmp1[2].split(' ');
   const tmp3 = tmp2[1].split(':');
@@ -38,6 +38,8 @@ const setImage = async (req, res) => {
     const userId = req.params.userId;
     const timeStamp = getDate();
 
+    console.log(`time stamp ${timeStamp}`);
+
     const encodedData = req.body.image;
     const posterName = req.body.poster;
 
@@ -48,6 +50,8 @@ const setImage = async (req, res) => {
     // // ContentType(image/png)
     const contentType = encodedData.toString().slice(encodedData.indexOf(':') + 1, encodedData.indexOf(';'));
     const fileName = `${timeStamp}_${posterName}.${fileExtension}`;
+
+    console.log(`file name ${fileName}`);
 
     await s3.uploadImage(userId, decodedFile, contentType, fileName);
 
