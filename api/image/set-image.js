@@ -23,17 +23,43 @@ const getDate = () => {
 
   // const date = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' });
 
-  const tmp1 = jstDate.split('-');
-  console.log(tmp1);
-  const tmp2 = tmp1[2].split(' ');
-  const tmp3 = tmp2[1].split(':');
+  let tmp1, tmp2, tmp3, tmp4;
+  let year, month, day, hour, minute, second;
 
-  const year = setNum(tmp1[0]);
-  const month = setNum(tmp1[1]);
-  const day = setNum(tmp2[0]);
-  const hour = setNum(tmp3[0]);
-  const minute = setNum(tmp3[1]);
-  const second = setNum(tmp3[2]);
+  if (jstDate.indexOf('-') != -1) {
+    // YYYY-MM-DD HH:MM:SS
+    tmp1 = jstDate.split('-');
+    console.log(tmp1);
+    tmp2 = tmp1[2].split(' ');
+    tmp3 = tmp2[1].split(':');
+
+    year = setNum(tmp1[0]);
+    month = setNum(tmp1[1]);
+    day = setNum(tmp2[0]);
+    hour = setNum(tmp3[0]);
+    minute = setNum(tmp3[1]);
+    second = setNum(tmp3[2]);
+  } else {
+    // MM/DD/YYYY, HH:MM:SS AMorPM
+    tmp1 = date.split('/');
+    tmp2 = tmp1[2].split(',');
+    tmp3 = tmp2[1].split(' ');
+    tmp4 = tmp3[1].split(':');
+
+    year = setNum(tmp2[0]);
+    month = setNum(tmp1[0]);
+    day = setNum(tmp1[1]);
+    hour = setNum(tmp4[0]);
+    minute = setNum(tmp4[1]);
+    second = setNum(tmp4[2]);
+
+    if (tmp3[2] === 'PM') {
+      let numHour = parseInt(hour);
+      numHour = numHour + 12;
+      hour = numHour.toString();
+    }
+  }
+
   
   return year + month + day + hour + minute + second;
 }
